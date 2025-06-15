@@ -45,8 +45,8 @@ The **Drone-Based Intelligent Agriculture System** is an advanced precision farm
 
 ## 🧪 Demo
 
-Watch the demo video here: \[📺 YouTube Link](https://youtu.be/RrupuszF1Mk?si=w5tamOa-KoCoIfAy)
-
+Watch the demo video here:  
+[📺 YouTube Link](https://youtu.be/RrupuszF1Mk?si=w5tamOa-KoCoIfAy)
 
 
 ---
