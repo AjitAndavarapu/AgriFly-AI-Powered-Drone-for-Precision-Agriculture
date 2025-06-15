@@ -1,5 +1,3 @@
-
-````
 # Drone-Based Intelligent Agriculture System
 
 ## 🚀 Overview
@@ -43,7 +41,6 @@ The **Drone-Based Intelligent Agriculture System** is an advanced precision farm
 6. **Dashboard**: Visual interface to monitor field stats, disease spread, and mission logs.
 
 ---
-
 
 
 ## 🧪 Demo
