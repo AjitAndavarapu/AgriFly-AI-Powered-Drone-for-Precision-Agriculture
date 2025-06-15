@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+        }
+        h1 {
+            text-align: center;
+            margin-top: 20px;
+        }
+        .chart-container {
+            width: 90%;
+            margin: 20px auto;
+        }
+    </style>
+</head>
+<body>
+    <h1>Plant Disease Monitoring Dashboard</h1>
+
+    <!-- Pie Chart: Disease Distribution -->
+    <div class="chart-container">
+        <h2>Disease Distribution</h2>
+        {{ pie_chart | safe }}
+    </div>
+
+    <!-- Line Chart: Disease Occurrences over Time -->
+    <div class="chart-container">
+        <h2>Disease Occurrences over Time</h2>
+        {{ line_chart | safe }}
+    </div>
+
+    <!-- Table Chart: Plant IDs and Diseases -->
+    <div class="chart-container">
+        <h2>Plant IDs and Diseases</h2>
+        {{ table_chart | safe }}
+    </div>
+</body>
+</html>

@@ -1,0 +1,169 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchard Health Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css">
+    <style>
+        body {
+            font-family: 'Arial', sans-serif;
+            background-color: #f4f7fc;
+            color: #333;
+        }
+        .container {
+            background-color: #ffffff;
+            border-radius: 12px;
+            box-shadow: 0 6px 15px rgba(0, 0, 0, 0.1);
+            padding: 40px;
+            max-width: 1200px;
+            margin: auto;
+        }
+        h1 {
+            color: #28a745;
+            font-weight: 700;
+            margin-bottom: 20px;
+        }
+        h3 {
+            color: #495057;
+            font-weight: 600;
+            margin-bottom: 20px;
+        }
+        .my-4 {
+            margin-top: 40px;
+            margin-bottom: 40px;
+        }
+        .form-control {
+            border-radius: 10px;
+            border: 1px solid #ced4da;
+            padding: 12px;
+            font-size: 16px;
+        }
+        .btn-primary {
+            background-color: #007bff;
+            border-color: #007bff;
+            padding: 10px 20px;
+            border-radius: 8px;
+        }
+        .btn-primary:hover {
+            background-color: #0056b3;
+            border-color: #004085;
+        }
+        .table {
+            border-radius: 10px;
+            box-shadow: 0 4px 10px rgba(0, 0, 0, 0.05);
+            margin-top: 20px;
+        }
+        .table th, .table td {
+            text-align: center;
+            padding: 12px;
+        }
+        .table-striped tbody tr:nth-child(odd) {
+            background-color: #f9f9f9;
+        }
+        .table-hover tbody tr:hover {
+            background-color: #f1f1f1;
+        }
+        .safe {
+            margin-top: 20px;
+            text-align: center;
+        }
+        .pie-chart, .bar-chart, .line-chart {
+            max-width: 100%;
+            height: auto;
+            margin: auto;
+        }
+        .search-section {
+            background-color: #f9f9f9;
+            border-radius: 8px;
+            padding: 20px;
+            margin-top: 20px;
+        }
+        .search-section input[type="text"] {
+            max-width: 350px;
+        }
+        .search-section h3 {
+            margin-bottom: 20px;
+        }
+        .section-title {
+            margin-top: 30px;
+            margin-bottom: 15px;
+            font-size: 1.2em;
+            color: #6c757d;
+            font-weight: 600;
+        }
+        .footer {
+            margin-top: 50px;
+            text-align: center;
+            font-size: 14px;
+            color: #6c757d;
+        }
+    </style>
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Orchard Health Dashboard</h1>
+
+        <!-- Disease Distribution Pie Chart -->
+        <div class="my-4">
+            <h3>Overall Plant Health</h3>
+            <div class="pie-chart">{{ pie_chart | safe }}</div>
+        </div>
+
+        <!-- Disease Count Bar Chart -->
+        <div class="my-4">
+            <h3>Disease Distribution</h3>
+            <div class="bar-chart">{{ bar_chart | safe }}</div>
+        </div>
+
+        <!-- Disease Occurrences Over Time -->
+        <div class="my-4">
+            <h3>Disease Occurrences Over Time</h3>
+            <div class="line-chart">{{ line_chart | safe }}</div>
+        </div>
+
+        <!-- Plant Health Progress (First 5 Plants) -->
+        <div class="my-4">
+            <h3>Health Progress Plants</h3>
+            {% for plant_id, plant_graph in plant_graphs.items() %}
+                <div class="my-4">
+                    <div>{{ plant_graph | safe }}</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Search Plant Progress -->
+        <div class="search-section">
+            <h3>Search Plant Health Progress</h3>
+            <form method="POST">
+                <input type="text" name="search" placeholder="Enter Plant ID" class="form-control mb-3" required>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <div class="mt-4">
+                {% if search_query %}
+                    <h5>Results for Plant ID: {{ search_query }}</h5>
+                    <div>{{ search_graph_html | safe }}</div>
+                {% endif %}
+            </div>
+        </div>
+
+        <!-- Display the heatmap -->
+        <div class="my-4">
+            <h3>Correlation Heatmap</h3>
+            <div class="safe">{{ heatmap | safe }}</div>
+        </div>
+
+    <!-- Table for Disease Data -->
+    <div class="my-4">
+        <h3>Plant Disease Data</h3>
+        <div id="table-container">
+            {{ table_html | safe }}
+        </div>
+    </div>
+        <!-- Footer -->
+        <div class="footer">
+            <p>&copy; 2025 Orchard Health Dashboard. All rights reserved.</p>
+        </div>
+    </div>
+</body>
+</html>

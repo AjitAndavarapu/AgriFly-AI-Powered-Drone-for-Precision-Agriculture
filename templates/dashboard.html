@@ -1,0 +1,155 @@
+<!-- <!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Plant Disease Monitoring Dashboard</h1>
+
+        <div class="mt-5">
+            <h2>Healthy vs Diseased Plants</h2>
+            <div id="pie-chart">{{ pie_chart | safe }}</div>
+        </div>
+
+        <div class="mt-5">
+            <h2>Disease Count per Plant</h2>
+            <div id="bar-chart">{{ bar_chart | safe }}</div>
+        </div>
+
+        <div class="mt-5">
+            <h2>Disease Occurrences Over Time</h2>
+            <div id="line-chart">{{ line_chart | safe }}</div>
+        </div>
+
+        <div class="mt-5">
+            <h2>Plant Data Table</h2>
+            <div id="table-chart">{{ table_html | safe }}</div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+<!-- 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Plant Disease Dashboard</title>
+    <script src="https://cdn.plot.ly/plotly-latest.min.js"></script>
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.3.1/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container">
+        <h1 class="mt-4">Plant Disease Monitoring Dashboard</h1>
+
+        <div class="mt-5">
+            <h2>Healthy vs Diseased Plants</h2>
+            <div id="pie-chart">{{ pie_chart | safe }}</div>
+        </div>
+
+        <div class="mt-5">
+            <h2>Disease Count per Plant</h2>
+            <div id="bar-chart">{{ bar_chart | safe }}</div>
+        </div>
+
+        <div class="mt-5">
+            <h2>Disease Occurrences Over Time</h2>
+            <div id="line-chart">{{ line_chart | safe }}</div>
+        </div>
+
+        <div class="mt-5">
+            <h2>Health Progress of Each Plant</h2>
+            {% for plant_id, plant_chart in plant_graphs.items() %}
+                <h3>Plant ID: {{ plant_id }}</h3>
+                <div>{{ plant_chart | safe }}</div>
+            {% endfor %}
+        </div>
+
+        <div class="mt-5">
+            <h2>Current Plant Status</h2>
+            <div id="table-chart">{{ table_html | safe }}</div>
+        </div>
+    </div>
+</body>
+</html> -->
+
+
+<!-- Current Useful Version -->
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Orchard Health Dashboard</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css">
+</head>
+<body>
+    <div class="container mt-5">
+        <h1 class="text-center">Orchard Health Dashboard</h1> 
+
+        <!-- Disease Distribution Pie Chart -->
+        <div class="my-4">
+            <h3>Overall Plant Health</h3>
+            <div>{{ pie_chart | safe }}</div>
+        </div>
+
+        <!-- Disease Count Bar Chart -->
+        <div class="my-4">
+            <h3>Disease Distribution</h3>
+            <div>{{ bar_chart | safe }}</div>
+        </div>
+
+        <!-- Disease Occurrences Over Time -->
+        <div class="my-4">
+            <h3>Disease Occurrences Over Time</h3>
+            <div>{{ line_chart | safe }}</div>
+        </div>
+
+        <!-- Plant Health Progress (First 5 Plants) -->
+        <div class="my-4">
+            <h3>Health Progress of First 5 Plants</h3>
+            {% for plant_id, plant_graph in plant_graphs.items() %}
+                <div class="my-4">
+                    <div>{{ plant_graph | safe }}</div>
+                </div>
+            {% endfor %}
+        </div>
+
+        <!-- Search Plant Progress -->
+        <div class="my-4">
+            <h3>Search Plant Health Progress</h3>
+            <form method="POST">
+                <input type="text" name="search" placeholder="Enter Plant ID" class="form-control mb-2" required>
+                <button type="submit" class="btn btn-primary">Search</button>
+            </form>
+            <div class="mt-4">
+                {% if search_query %}
+                    <h5>Results for Plant ID: {{ search_query }}</h5>
+                    <div>{{ search_graph_html | safe }}</div>
+                {% endif %}
+            </div>
+        </div>
+        <!-- Display the heatmap -->
+        <div>
+            <h3>Correlation Heatmap</h3>
+            {{ heatmap | safe }}
+        </div>
+
+        <!-- Display the table -->
+        <div>
+            <h3>Plant Disease Data</h3>
+            {{ table_html | safe }}
+        </div>
+    </div>
+</body>
+</html> 
+
+
